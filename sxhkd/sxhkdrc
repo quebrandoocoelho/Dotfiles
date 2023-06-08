@@ -1,0 +1,164 @@
+#
+# +-+-+-+-+-+-+ +-+-+ +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+# |T|E|C|L|A|S| |D|E| |A|T|A|L|H|O| |I|N|D|E|P|E|N|D|E|N|T|E|S|
+# +-+-+-+-+-+-+ +-+-+ +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+#
+
+# TIRAR SCREENSHOT DA TELA
+Print
+    scrot -p $HOME/'Images/Screenshots/%Y-%m-%d-%T.png' && dunstify 'Imagem Salva' --timeout=2000 -u low
+
+# EXECUTAR O TERMITE
+super + Return
+	termite
+
+# EXECUTAR TERMITE FLOATING
+#super + shift + Return
+#	termite --name float
+
+# EXECUTAR XFCE4-TERMINAL
+super + shift + Return
+	xfce4-terminal
+
+
+# EXECUTAR O ROFI
+super + d
+	rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
+
+# EXECUTAR A TELA DE BLOQUEIO
+super + l
+        betterlockscreen -l
+
+# REINICIAR O SXHKD
+super + Escape
+	pkill -USR1 -x sxhkd
+
+
+# INICIAR O NEMO
+super + e
+	nemo
+
+#
+# TECLAS DE ATALHO DO BSPWM
+#
+
+# ATUALIZAR AS CONFIGURAÇÕES DO BSPWM
+super + alt + r
+	bspc wm -r
+
+# SAIR DO BSPWM
+super + alt + q
+	bspc quit
+
+# FECHAR E MATAR O PROCESSO
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# ALTERNAR ENTRE LAYOUT LADO A LADO E JANELA UNICA
+super + m
+	bspc desktop -l next
+
+#
+# +-+-+-+-+-+-+ +-+-+ +-+-+-+-+-+-+
+# |C|O|N|F|I|G| |D|E| |E|S|T|A|D|O|
+# +-+-+-+-+-+-+ +-+-+ +-+-+-+-+-+-+
+#
+
+# MUDAR O ESTADO DA JANELA
+# LADO A LADO, PSEUDO LADO A LADO, FLUTUANTE, TELA CHEIA
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# MUDAR A FLAG DO NÓ
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# +-+-+-+-+ +-+-+ +-+-+-+-+-+-+
+# |F|O|C|O| |D|A| |J|A|N|E|L|A|
+# +-+-+-+-+ +-+-+ +-+-+-+-+-+-+
+#
+
+# FOCAR O NÓ NA DIREÇÃO DADA
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# FOCAR O PULO DO NÓ PARA O CAMINHO DADO
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# FOCAR O NÓ PARA A PROXIMA/ANTERIOR JANELA NO MONITOR ATUAL
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# FOCAR NA PROXIMA/ANTERIOR JANELA NO MONITOR ATUAL
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# FOCAR NA ULTIMA TELA
+alt + Tab
+	bspc desktop -f last
+
+# FOCAR NO ULTIMO NODE
+super + Tab
+	bspc node -f last
+
+# FOCAR NA PROXIMA TELA
+alt + q   
+        bspc desktop -f next
+
+# FOCAR NO NÓ MAIS ANTIGO OU NO MAIS NOVO NO HISTORICO DE FOCO
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# FOCAR OU ENVIAR PARA OUTRO DESKTOP
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+
+#
+# +-+-+-+ +-+-+-+-+-+-+-+
+# |P|R|E| |S|E|L|E|C|A|O|
+# +-+-+-+ +-+-+-+-+-+-+-+
+#
+
+# PRÉ SELECIONAR A DIREÇÃO
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# PRÉ SELECIONAR A RAZÃO
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# CANCELAR A PRÉ SELEÇÃO DO NÓ ATUAL
+super + ctrl + space
+	bspc node -p cancel
+
+# CANCELAR A PRÉ SELEÇÃO DO DESKTOP ATUAL
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# +-+-+-+-+-+ +-+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+# |M|O|V|E|R| |/| |R|E|D|I|M|E|N|C|I|O|N|A|R|
+# +-+-+-+-+-+ +-+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+#
+
+# EXPANDIR A JANELA MOVENDO UM DE SEUS LADOS PARA FORA
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# DIMINUIR A JANELA MOVENDO UM DE SEUS LADOS PARA DENTRO
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# MOVER A JANELA FLUTUANTE
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# ROTACIONAR
+ctrl + h
+  bspc node @/ -R 90
+

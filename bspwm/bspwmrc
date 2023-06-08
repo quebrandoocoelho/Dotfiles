@@ -1,0 +1,82 @@
+#! /bin/sh
+
+# 
+#	ENCERRAR PROCESSOS
+#
+killall -q sxhkd
+killall -q dunst
+killall -q polybar
+killall -q picom
+killall -q mpd
+killall -USR1 termite
+
+#
+# ESPERAR QUE O PROCESSO ESTEJA ENCERRADO
+#
+while pgrep -u $UID -x picom >/dev/null; do sleep 1; done
+while pgrep -u $UID -x sxhkd >/dev/null; do sleep 1; done
+while pgrep -u $UID -x dunst >/dev/null; do sleep 1; done
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+#
+#	INICIAR PROCESSOS
+#
+polybar top &
+polybar bottom &
+feh --bg-scale ~/Images/Backgrounds/signs.png &
+picom --config ~/.config/picom/picom.conf &
+sxhkd &
+dunst -config ~/.config/dunst/dunstrc &
+xsetroot -cursor_name left_ptr &
+#~/.config/polybar/scripts/updates.sh &
+mpd &
+
+
+#
+#	CONFIGURAÇÃO DA JANELA
+#
+
+#NUMEROS DE AREAS DE TRABALHO
+bspc monitor -d 1 2 3 4 5 6 7 8 9
+
+# LARGURA DA BORDA
+bspc config border_width          2
+
+# LARGURA ENTRE AS JANELAS
+bspc config window_gap            8
+
+# RAZÃO DO SPLIT DA JANELA
+bspc config split_ratio           0.52
+
+# SEM BORDAS NO ESTILO DE JANELA UNICA
+bspc config borderless_monocle    true
+
+# SEM GAPS NO ESTILO DE JANELA UNICA
+bspc config gapless_monocle       true
+
+# O FOCO SEGUE O MOUSE
+bspc config focus_follows_pointer true
+
+# COR DA JANELA EM FOCO
+bspc config focused_border_color  "#017CC0"
+
+#
+#	REGRAS DE PROGRAMAS
+#
+
+bspc rule -a firefox desktop="^3" #follow=on
+bspc rule -a TelegramDesktop desktop="^4"
+bspc rule -a Code desktop="^5"
+bspc rule -a kdenlive desktop="^6"
+bspc rule -a SimpleScreenRecorder desktop="^6"
+bspc rule -a Nemo desktop="^8" follow=on focus=on
+bspc rule -a KeePassXC desktop="^9" state=floating #follow=on
+bspc rule -a Termite focus=on
+
+#bspc rule -a Termite:float state=floating #rectangle=800x600+250+100
+bspc rule -a Xfce4-terminal state=floating rectangle=760x400+300+200
+bspc config external_rules_command ~/.config/bspwm/external_rules
+
+# DEIXAR O BRILHO NO MÁXIMO
+xbacklight -set 100
+

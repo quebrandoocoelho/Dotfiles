@@ -1,0 +1,14 @@
+#!/bin/sh
+wid=$1
+class=$2
+case "$class" in
+        *)
+                case "$(xprop -name "$wid" | awk '/WM_CLASS/ {print $1}')" in
+                        '"float"' )
+                                echo state=floating
+                                ;;
+                esac
+                ;;
+esac
+
+
