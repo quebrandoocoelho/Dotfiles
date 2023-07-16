@@ -3,6 +3,11 @@
 # |T|E|C|L|A|S| |D|E| |A|T|A|L|H|O| |I|N|D|E|P|E|N|D|E|N|T|E|S|
 # +-+-+-+-+-+-+ +-+-+ +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
 #
+# Mapeamento de teclas para ajustar o brilho da tela
+super + Up
+    xbacklight -inc 10
+super + Down
+    xbacklight -dec 10
 
 # TIRAR SCREENSHOT DA TELA
 Print
@@ -10,7 +15,7 @@ Print
 
 # EXECUTAR O TERMITE
 super + Return
-	termite
+	kitty
 
 # EXECUTAR TERMITE FLOATING
 #super + shift + Return

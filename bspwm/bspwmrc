@@ -9,7 +9,7 @@ killall -q polybar
 killall -q picom
 killall -q mpd
 killall -USR1 termite
-
+kdenlive -USR1 kitty
 #
 # ESPERAR QUE O PROCESSO ESTEJA ENCERRADO
 #

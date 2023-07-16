@@ -1,7 +1,9 @@
-sw_volume: 100
+sw_volume: 96
 audio_device_state:1:pulse audio
-audio_device_state:1:FIFO
-state: stop
+audio_device_state:1:my_fifo
+state: pause
+current: 20
+time: 2.338000
 random: 0
 repeat: 0
 single: 0
@@ -10,4 +12,29 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
+0:01 - Hybrid Theory (2000)/09 - A Place for My Head.mp3
+1:01 - Hybrid Theory (2000)/07 - By Myself.mp3
+2:01 - Hybrid Theory (2000)/08 - In the End.mp3
+3:01 - Hybrid Theory (2000)/10 - Forgotten.mp3
+4:01 - Hybrid Theory (2000)/11 - Cure for the Itch.mp3
+5:01 - Hybrid Theory (2000)/12 - Pushing Me Away.mp3
+6:01 - Hybrid Theory (2000)/05 - Crawling.mp3
+7:01 - Hybrid Theory (2000)/06 - Runaway.mp3
+8:01 - Hybrid Theory (2000)/03 - With You.mp3
+9:01 - Hybrid Theory (2000)/04 - Points of Authority.mp3
+10:01 - Hybrid Theory (2000)/02 - One Step Closer.mp3
+11:01 - Hybrid Theory (2000)/01 - Papercut.mp3
+12:03 - Meteora (2003)/01 - Foreword.mp3
+13:03 - Meteora (2003)/02 - Don't Stay.mp3
+14:03 - Meteora (2003)/03 - Somewhere I Belong.mp3
+15:03 - Meteora (2003)/04 - Lying from You.mp3
+16:03 - Meteora (2003)/05 - Hit the Floor.mp3
+17:03 - Meteora (2003)/06 - Easier to Run.mp3
+18:03 - Meteora (2003)/07 - Faint.mp3
+19:03 - Meteora (2003)/08 - Figure.09.mp3
+20:03 - Meteora (2003)/09 - Breaking the Habit.mp3
+21:03 - Meteora (2003)/10 - From the Inside.mp3
+22:03 - Meteora (2003)/11 - Nobody's Listening.mp3
+23:03 - Meteora (2003)/12 - Session.mp3
+24:03 - Meteora (2003)/13 - Numb.mp3
 playlist_end
